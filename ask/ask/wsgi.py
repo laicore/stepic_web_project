@@ -7,9 +7,17 @@ For more information on this file, see
 https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 """
 
+
 import os
 
 from django.core.wsgi import get_wsgi_application
+
+from django.http import HttpResponse
+
+
+def fun(request):
+    return HttpResponse('1OK\n')
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ask.settings')
 
