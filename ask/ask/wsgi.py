@@ -15,7 +15,12 @@ from django.core.wsgi import get_wsgi_application
 from django.http import HttpResponse
 
 
+
 def fun(request):
+    print("===============")
+    print(request.path)
+    print("===============")
+
     return HttpResponse('1OK\n')
 
 

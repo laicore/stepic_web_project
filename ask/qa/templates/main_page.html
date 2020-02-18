@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% for p in page.object_list %}
+    <hr>
+    <a href="{{p.get_url}}">{{p.title}}</a>
+    {%endfor%}
+    <hr>
+
+    <nav>
+        <ul>
+            {% for p in page.paginator.page_range %}
+            <li style="display: inline;"><a href="{{ page.paginator.baseurl}}{{p}}"> {{p}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+</body>
+
+</html>

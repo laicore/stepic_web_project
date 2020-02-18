@@ -11,20 +11,23 @@ class QuestionManager(models.Manager):
     def popular(self):
         return self.order_by('-rating')
 
+
 class Question(models.Model):
     objects = QuestionManager()
     title = models.CharField(max_length=255)
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(default=0)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name=author_pk)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='author_pk')
     likes = models.ManyToManyField(User)
 
-
+    def get_url(self):
+        return "/question/"+str(self.id)
 
 
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
