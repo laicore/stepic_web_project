@@ -19,13 +19,13 @@ from .wsgi import fun
 from qa.views import *
 
 urlpatterns = [
-    path('', include('qa.urls1')),
+    path('', main_page),
     path('admin/', admin.site.urls),
     path('login/', fun),
     path('signup/', fun),
     re_path(r'question/(?P<id>\d+)/', getQ),
-    path('ask/', include('qa.urls')),
-    path('popular/', include('qa.urls1')),
+    path('ask/', AskFormView),
+    path('popular/', main_page),
     path('new/', fun)
 
 ]

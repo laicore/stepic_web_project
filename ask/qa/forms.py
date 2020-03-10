@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 from django import forms
 from .models import Question, Answer
 
@@ -13,7 +11,7 @@ class AskForm(forms.Form):
         text = self.cleaned_data['text']
         if text == "" or title == "":
             raise forms.ValidationError(
-                'Поле вопроса или названия пустое!', code='empty')
+                u'Поле вопроса или названия пустое!', code='empty')
         return text
 
     def save(self):
@@ -32,7 +30,7 @@ class AnswerForm(forms.Form):
     def clean_text(self):
         text = self.cleaned_data['text']
         if text == "":
-            raise forms.ValidationError('Поле ответа пустое!', code='empty')
+            raise forms.ValidationError(u'Поле ответа пустое!', code='empty')
         return text
 
     def save(self):
