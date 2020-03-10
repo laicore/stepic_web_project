@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator as Pgn
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Question, Answer, QuestionManager
@@ -22,10 +22,7 @@ def AskFormView(request):
 
 
 def getQ(request, id=1):
-    try:
-        question = Question.objects.get(id=int(id))
-    except Question.DoesNotExist:
-        raise Http404
+    question = get_object_or_404(Question,id=id)
     answers = Answer.objects.filter(question_id=int(id))[:]
     if request.method == 'POST':
         answer = AnswerForm(question, data=request.POST)
@@ -37,7 +34,7 @@ def getQ(request, id=1):
         'title': question.title,
         'text': question.text,
         'answer': answers,
-        'form': AnswerForm(question.id)
+        'form': AnswerForm()
     })
 
 

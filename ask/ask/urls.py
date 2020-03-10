@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', fun),
     path('signup/', fun),
-    re_path(r'question/(?P<id>\d+)/', getQ),
+    path('question/<int:id>/', getQ),
     path('ask/', AskFormView),
     path('popular/', main_page),
     path('new/', fun)

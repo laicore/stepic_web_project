@@ -11,7 +11,7 @@ class AskForm(forms.Form):
         text = self.cleaned_data['text']
         if text == "" or title == "":
             raise forms.ValidationError(
-                u'Поле вопроса или названия пустое!', code='empty')
+                'empty lines')
         return text
 
     def save(self):
@@ -23,14 +23,14 @@ class AskForm(forms.Form):
 class AnswerForm(forms.Form):
     text = forms.CharField()
 
-    def __init__(self, question, **kwargs):
+    def __init__(self, question=None, **kwargs):
         self.question = question
         super(AnswerForm, self).__init__(**kwargs)
 
     def clean_text(self):
         text = self.cleaned_data['text']
         if text == "":
-            raise forms.ValidationError(u'Поле ответа пустое!', code='empty')
+            raise forms.ValidationError('empty line')
         return text
 
     def save(self):
