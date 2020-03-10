@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     re_path(r'(?P<id>\d+)', views.getQ),
+    path('',views.AskFormView)
 ]
