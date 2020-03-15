@@ -7,27 +7,27 @@
 </head>
 
 <body>
+    username: <b>{{login.username}}</b>
     <h2>{{title}}</h2>
+    <h5>{{questionUser.username}}</h5>
+    text:
     <hr>
     <blockquote>{{text}}</blockquote>
     <hr>
+    <!-- {%if form%} -->
 
     <form action="{{id}}" method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <!-- {%for field in form %}
-        <div class="form-group ">
-            <label for="title">{{field.label}}</label>
-            <br>
-            {{field}}
-        </div>
-        {%endfor%} -->
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+    <!-- {%endif%} -->
     <ul>
         {% for ans in answer %}
-        <li>{{ans.text}}</li>
+        <li>{{ans.author}}: <br>
+            ({{ans.added_at}})<br>
+            text: {{ans.text}}
+        </li>
         {% endfor %}
     </ul>
 

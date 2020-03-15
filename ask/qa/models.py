@@ -1,7 +1,6 @@
 from django.db import models, connection
 from django.contrib.auth.models import User
 
-
 # Create your models here.
 
 class QuestionManager(models.Manager):
@@ -19,7 +18,7 @@ class Question(models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='author_pk')
+        User, on_delete=models.DO_NOTHING, related_name='author_pk')
     likes = models.ManyToManyField(User)
 
     def get_url(self):
@@ -29,5 +28,5 @@ class Question(models.Model):
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
